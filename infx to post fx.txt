@@ -1,0 +1,63 @@
+//Jobayer
+//1731833
+
+#include<iostream>
+#include<stack>
+using namespace std;
+
+int orderPrec(char c){
+	if(c== '^')
+		return 3;
+	else if(c == '*' || c == '/')
+		return 2;
+	else if(c == '+' || c == '-')
+		return 1;
+	else
+		return -1;
+}
+
+void infixToPostfix(string s){
+	stack<char> stacc;
+	
+	stacc.push('N');
+	int l = s.length();
+	string answer;
+	
+	for(int x=0; x<=l; x++){
+		if((s[x] >= 'a' && s[x] <= 'z' )||(s[x] >= 'A' && s[x]<='Z'))
+			answer+=s[x];
+		
+		else if(s[x] == '(')
+			stacc.push('(');
+		
+		else if(s[x] == ')'){
+			while(stacc.top()!='N' && stacc.top() != '('){
+				char c = stacc.top();
+				stacc.pop();
+				answer += c;
+			}
+			if(stacc.top() == '('){
+				char c= stacc.top();
+				stacc.pop();
+			}
+		}
+		
+		else{
+			while(stacc.top() != 'N' && orderPrec(s[x]) <= orderPrec(stacc.top())){
+				char c = stacc.top();
+				stacc.pop();
+				answer += c;
+			}
+			stacc.push(s[x]);
+		}
+	}
+	
+	cout << answer << endl;
+}
+
+int main(){
+	string exp = "a+b-c(d*e)"; //a b -c d e * +
+	infixToPostfix(exp);
+	
+	return 0;
+}

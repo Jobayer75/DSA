@@ -1,0 +1,76 @@
+// Jobayer
+//1731833
+
+public class Staff {
+    private String name;
+    private int stuffnumber;
+    private String faculty;
+    private int age;
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStuffnumber(int stuffnumber){
+        this.stuffnumber= stuffnumber;
+    }
+    public void setFaculty(String faculty){
+        this.faculty= faculty;
+    }
+    public void setAge(int age){
+        this.age= age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStuffnumber() {
+        return stuffnumber;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    static void displayStaff(Staff staff){
+        System.out.print("Staff name: ");
+        System.out.println(staff.name);
+        System.out.print("Staff Number: ");
+        System.out.println(staff.stuffnumber);
+        System.out.print("Staff Faculty: ");
+        System.out.println(staff.faculty);
+        System.out.print("Staff Age: ");
+        System.out.println(staff.age);
+    }
+
+    public static void main(String[] args) {
+        Staff staff1 = new Staff();
+        staff1.name = "Zulfakar";
+        staff1.stuffnumber = 149;
+        staff1.faculty = "Law";
+        staff1.age= 50;
+
+        Staff staff2 = new Staff();
+        staff2.name = "Ooi Ji Woo";
+        staff2.stuffnumber = 637;
+        staff2.faculty = "Agriculture";
+        staff2.age= 42;
+
+        Staff staff3 = new Staff();
+        staff3.name = "Abdullah";
+        staff3.stuffnumber = 721;
+        staff3.faculty = "Economics";
+        staff3.age= 26;
+
+        displayStaff(staff1);
+        displayStaff(staff2);
+        displayStaff(staff3);
+
+    }
+}

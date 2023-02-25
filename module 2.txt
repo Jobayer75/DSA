@@ -1,0 +1,100 @@
+//Jobayer
+//1731833
+
+#include <iostream>
+
+using namespace std;
+
+struct Staff
+{
+  int staffnumber;
+  string name;
+  string faculty;
+  int age;
+  Staff *next;
+}*head;
+
+
+class StaffList
+{
+public:
+    StaffList ()
+  {
+    head = new Staff;
+  }
+
+  void Insert (int s, string n, string f, int a)
+  {
+    Staff *newStaff = new Staff;
+    newStaff->staffnumber = s;
+    newStaff->name = n;
+    newStaff->faculty = f;
+    newStaff->age = a;
+    newStaff->next = NULL;
+
+    Staff *current = head;
+    while(current->next!=NULL)
+    {
+        current = current->next;
+    }
+    current->next = newStaff;
+   
+  	}
+
+
+void displayStaff ()
+  {
+        Staff *current = head;
+
+        cout << "\nStaff details: " << endl;
+
+        while(current -> next != NULL)
+        {
+            current = current->next;
+            cout << "\tID: " << current->staffnumber << endl
+                 << "\tName: " << current->name << endl
+                 << "\tFaculty: " << current->faculty << endl
+                 << "\tAge: " << current->age << endl << endl;
+        }
+  }
+
+
+  void Delete (int id)
+  {
+      Staff *previous, *current = head;
+      bool flag = true;
+        while(current->next != NULL)
+        {
+            previous = current;
+            current = current->next;
+            if(current->staffnumber == id)
+            {
+                previous->next = current->next;
+                delete current;
+                flag = false;
+                break;
+            }
+        }
+
+
+        if (flag)
+        {
+            cout << "ID not found!" << endl;
+        }
+  }
+
+
+ };
+
+int main ()
+{
+  StaffList staff1;
+  staff1.Insert (143, "Min Ho", "Medicine", 30);
+  staff1.Insert (437, "Ji Woo", "Agriculture", 42);
+  staff1.Insert (321, "Fattah", "Aeronautic", 26);
+  staff1.displayStaff ();
+  staff1.Delete(143);
+  staff1.Delete(190); //expect erorr message
+  staff1.displayStaff ();
+  return 0;
+}

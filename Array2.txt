@@ -1,0 +1,128 @@
+//Jobayer
+//1731833
+
+#include<iostream>
+using namespace std;
+
+struct Staff{
+	int id;
+	string name;
+	string faculty;
+	int age;
+};
+
+class Stack{
+	private:
+		int MAX;
+		int tos;
+		Staff *staffs;
+	
+	public:
+		Stack(int size){
+			this->MAX=size;
+			tos = 0;
+			staffs = new Staff[MAX];
+		}
+		
+		bool isEmpty(){
+			if(tos-1 < 0) 
+				return true;
+			else
+				return false;
+		}
+		
+		bool isFull(){
+			if(tos == MAX)
+				return true;
+			else 
+				return false;
+		}
+		
+		Staff tops(){
+			Staff topStaff;
+			if(!isEmpty()){
+				topStaff = staffs[tos-1];
+			}
+			else
+				cout << "Empty stack" << endl;
+				
+			return topStaff;
+		}
+		
+		void push(int id, string name, string faculty, int age){
+			if(isFull()){
+				cout << "Full stack" << endl;
+				return;
+			}
+			else{
+				Staff newStaff;
+				newStaff.id = id;
+				newStaff.name = name;
+				newStaff.faculty = faculty;
+				newStaff.age = age;
+				
+				staffs[tos] = newStaff;
+				tos++;
+			}
+			
+		}
+		
+		Staff pop(){
+			Staff popStaff;
+			if(!isEmpty()){
+				popStaff = staffs[tos-1];
+				tos--;
+			}
+			else
+				cout <<"Empty stack" << endl;
+				
+			return popStaff;
+		}
+};
+
+
+
+int main(){
+
+	Stack StaffArray(3);
+	
+	if(StaffArray.isEmpty())
+		cout << "Stack is empty" << endl;
+		
+	cout << "Insert Staff 1" << endl;
+	StaffArray.push(149,"Zulfakar","Law", 50);
+	
+	cout << "Insert Staff 2" << endl;
+	StaffArray.push(637,"Ooi Ji Woo", "Agriculture",42);
+	
+	cout << "Insert Staff 3" << endl;
+	StaffArray.push(721,"Abdullah", "Economics", 26);
+	
+	cout << "----------------------------" << endl;
+	
+	cout << "---Lists of Staffs in stack---" << endl;
+	Staff st1 = StaffArray.tops();
+	cout << "ID: " << st1.id << endl
+		 << "Name: " << st1.name << endl
+		 << "Faculty/Division: " << st1.faculty << endl 
+		 << "Age: " << st1.age << endl << endl;
+	
+	st1 = StaffArray.pop();
+		 
+	st1 = StaffArray.tops();
+	cout << "ID: " << st1.id << endl
+		 << "Name: " << st1.name << endl
+		 << "Faculty/Division: " << st1.faculty << endl 
+		 << "Age: " << st1.age << endl << endl;
+
+		s1 = StaffArray.pop();
+		 
+	st1 = StaffArray.tops();
+	cout << "ID: " << st1.id << endl
+		 << "Name: " << st1.name << endl
+		 << "Faculty/Division: " << st1.faculty << endl 
+		 << "Age: " << st1.age << endl << endl;	
+	
+	
+	return 0;
+}

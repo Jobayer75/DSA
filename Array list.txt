@@ -1,0 +1,124 @@
+//Jobayer
+//1731833
+
+#include <iostream>
+using namespace std;
+
+struct Staff {
+	string name;
+	int id;
+	string division;
+	int age;
+};
+
+class Stack {
+	private:
+	int max;
+	int tos;
+	Staff *staffs;
+	
+	public:
+		Stack(int size) {
+			this->max = size;
+			tos = 0;
+			staffs = new Staff[max];
+		}
+		
+		bool isEmpty(){
+			if(tos-1 < 0){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
+		bool isFull(){
+			if(tos == max){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
+		Staff top() {
+			Staff topStaff;
+			if(!isEmpty()){
+				topStaff = staffs[tos-1];
+			}
+			else {
+				cout << "Stack is empty." << endl;
+			}
+			return topStaff;
+		}
+		
+		void push(string name, int id, string division, int age) {
+			if(isFull()){
+				cout << "Stack is full!" << endl;
+			}
+			else {
+				Staff newStaff;
+				newStaff.name = name;
+				newStaff.id = id;
+				newStaff.division = division;
+				newStaff.age = age;
+				
+				staffs[tos] = newStaff;
+				tos++;
+			}
+		}
+		
+		Staff pop(){
+			Staff popStaff;
+			if(!isEmpty()){
+				popStaff = staffs[tos-1];
+				tos--;
+			}
+			else {
+				cout << "Stack is empty!" << endl;
+			}
+			return popStaff;
+		}
+};
+
+int main() {
+	Stack s(3);
+	
+	if(s.isEmpty())
+		cout << "Stack is empty" << endl;
+	
+	cout << "Insert element 1" << endl;
+	s.push("Zulkafar", 149, "Law", 50);
+	
+	cout << "Insert element 2" << endl;
+	s.push("Ooi Ji Woo", 637, "Agriculture", 42);
+	
+	cout << "Insert element 3" << endl;
+	s.push("Abdullah", 721, "Economics", 26);   
+	
+	cout << "------------------------------" << endl;
+	
+	
+	cout << "Top of stack is " << endl;
+	Staff st1 = s.top();
+	cout << "Name: " << st1.id << endl
+		 << "ID: " << st1.name << endl
+		 << "Division: " << st1.division << endl
+		 << "Age: " << st1.age << endl << endl;
+	
+	st1 = s.pop();
+	cout << "Popped Staff: " << endl;
+	cout << "Name: " << st1.id << endl
+		 << "ID: " << st1.name << endl
+		 << "Division: " << st1.division << endl
+		 << "Age: " << st1.age << endl << endl;
+		 
+	cout << "Top of stack is " << endl;
+	st1 = s.top();
+cout << "Name: " << st1.id << endl
+		 << "ID: " << st1.name << endl
+		 << "Division: " << st1.division << endl
+		 << "Age: " << st1.age << endl << endl;
+	return 0;
+}
